@@ -6,6 +6,8 @@
     - [Lazy installation](#lazy-installation)
     - [Manual installation](#manual-installation)
   - [Configuration](#configuration)
+    - [neovim configuration](#neovim-configuration)
+    - [Talon configuration](#talon-configuration)
   - [Frequently asked questions](#frequently-asked-questions)
     - [nvim does not support Lazy?](#nvim-does-not-support-lazy)
     - [nvim does not find the `neovim` globally installed package?](#nvim-does-not-find-the-neovim-globally-installed-package)
@@ -65,6 +67,8 @@ git checkout beta
 
 ## Configuration
 
+### neovim configuration
+
 If you aren't using a plugin manager that automatically calls setup for you (e.g. it is needed for lazy), you will need this somewhere in your neovim config, e.g. in [init.lua](https://neovim.io/doc/user/lua-guide.html#lua-guide-config):
 
 ```lua
@@ -72,6 +76,16 @@ If you aren't using a plugin manager that automatically calls setup for you (e.g
 require("talon").setup()
 -- The actual Cursorless initialization
 require("cursorless").setup()
+```
+
+### Talon configuration
+
+Add a `.talon` file like the following anywhere in your Talon user directory (e.g. named `cursorless_neovim.talon`):
+
+```talon
+app: neovim
+-
+tag(): user.cursorless
 ```
 
 ## Frequently asked questions
