@@ -23,13 +23,8 @@ Neovim plugin to support Cursorless
 - neovim-talon: https://github.com/hands-free-vim/neovim-talon
 - node: https://nodejs.org/en
 - npm (generally part of node installation)
+- neovim node package: https://github.com/neovim/node-client (globally installed with `npm`)
 - (Optional) talon.nvim: https://github.com/hands-free-vim/talon.nvim
-
-Install the neovim node package globally:
-
-```
-npm install -g neovim
-```
 
 ## Installation
 
