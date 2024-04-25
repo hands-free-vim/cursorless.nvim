@@ -10,6 +10,4 @@ function RegisterFunctions(talon_nvim_path)
           \ {'sync': v:false, 'name': 'CursorlessLoadExtension', 'type': 'function', 'opts': {}},
           \ {'sync': v:false, 'name': 'CursorlessRunRecordedTestCases', 'type': 'function', 'opts': {}},
           \ ])
-     call remote#host#RegisterPlugin('node', a:talon_nvim_path . '/node/neovim-registry', [
-          \ ])
 endfunction
