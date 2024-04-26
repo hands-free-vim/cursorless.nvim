@@ -16,10 +16,10 @@ end
 -- https://www.reddit.com/r/neovim/comments/tk1hby/get_the_path_to_the_current_lua_script_in_neovim/
 -- https://pgl.yoyo.org/luai/i/debug.getinfo
 -- https://www.gammon.com.au/scripts/doc.php?lua=debug.getinfo
--- e.g. :lua print(require('cursorless.utils').talon_nvim_path())
+-- e.g. :lua print(require('cursorless.utils').cursorless_nvim_path())
 -- outputs: C:\Users\User\AppData\Local\nvim-data\lazy\talon.nvim
 -- NOTE: Development cursorless-neovim is installed in: C:\Users\User\AppData\Local\nvim\rplugin\node\cursorless-neovim
-function M.talon_nvim_path()
+function M.cursorless_nvim_path()
   --source_file=@C:/Users/User/AppData/Local/nvim-data/lazy/talon.nvim/lua/talon/utils.lua
   local str = debug.getinfo(1, 'S').source
   -- print(('source_file=%s'):format(str))

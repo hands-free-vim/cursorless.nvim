@@ -49254,7 +49254,7 @@ async function windowGetVisibleRanges(window2, client, lines) {
   return [range4];
 }
 async function getTalonNvimPath(client) {
-  const luaCode = `return require("cursorless.utils").talon_nvim_path()`;
+  const luaCode = `return require("cursorless.utils").cursorless_nvim_path()`;
   const data = await client.executeLua(luaCode, []);
   return data;
 }
