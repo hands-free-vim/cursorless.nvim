@@ -8,6 +8,5 @@ function RegisterFunctions(cursorless_nvim_path)
           \ ])
      call remote#host#RegisterPlugin('node', a:cursorless_nvim_path . 'node/cursorless-neovim', [
           \ {'sync': v:false, 'name': 'CursorlessLoadExtension', 'type': 'function', 'opts': {}},
-          \ {'sync': v:false, 'name': 'CursorlessRunRecordedTestCases', 'type': 'function', 'opts': {}},
           \ ])
 endfunction
