@@ -3690,7 +3690,7 @@ var require_lodash = __commonJS({
           if (fromIndex < 0) {
             fromIndex = nativeMax(length + fromIndex, 0);
           }
-          return isString2(collection) ? fromIndex <= length && collection.indexOf(value, fromIndex) > -1 : !!length && baseIndexOf(collection, value, fromIndex) > -1;
+          return isString3(collection) ? fromIndex <= length && collection.indexOf(value, fromIndex) > -1 : !!length && baseIndexOf(collection, value, fromIndex) > -1;
         }
         var invokeMap = baseRest(function(collection, path9, args) {
           var index = -1, isFunc = typeof path9 == "function", result2 = isArrayLike(collection) ? Array2(collection.length) : [];
@@ -3758,7 +3758,7 @@ var require_lodash = __commonJS({
             return 0;
           }
           if (isArrayLike(collection)) {
-            return isString2(collection) ? stringSize(collection) : collection.length;
+            return isString3(collection) ? stringSize(collection) : collection.length;
           }
           var tag = getTag(collection);
           if (tag == mapTag || tag == setTag) {
@@ -4193,7 +4193,7 @@ var require_lodash = __commonJS({
           return isInteger3(value) && value >= -MAX_SAFE_INTEGER && value <= MAX_SAFE_INTEGER;
         }
         var isSet2 = nodeIsSet ? baseUnary(nodeIsSet) : baseIsSet;
-        function isString2(value) {
+        function isString3(value) {
           return typeof value == "string" || !isArray(value) && isObjectLike(value) && baseGetTag(value) == stringTag;
         }
         function isSymbol(value) {
@@ -4218,7 +4218,7 @@ var require_lodash = __commonJS({
             return [];
           }
           if (isArrayLike(value)) {
-            return isString2(value) ? stringToArray(value) : copyArray(value);
+            return isString3(value) ? stringToArray(value) : copyArray(value);
           }
           if (symIterator && value[symIterator]) {
             return iteratorToArray(value[symIterator]());
@@ -5247,7 +5247,7 @@ var require_lodash = __commonJS({
         lodash.isRegExp = isRegExp;
         lodash.isSafeInteger = isSafeInteger;
         lodash.isSet = isSet2;
-        lodash.isString = isString2;
+        lodash.isString = isString3;
         lodash.isSymbol = isSymbol;
         lodash.isTypedArray = isTypedArray;
         lodash.isUndefined = isUndefined2;
@@ -49158,6 +49158,20 @@ var glob = Object.assign(glob_, {
 });
 glob.glob = glob;
 
+// ../cursorless-engine/src/util/grammarHelpers.ts
+var import_lodash57 = __toESM(require_lodash(), 1);
+var UNUSED = Symbol("unused");
+var ArgPosition = class {
+  constructor(position) {
+    this.position = position;
+  }
+};
+var argPositions = {
+  $0: new ArgPosition(0),
+  $1: new ArgPosition(1),
+  $2: new ArgPosition(2)
+};
+
 // ../neovim-registry/src/NeovimRegistry.ts
 var import_node_events = require("node:events");
 var NeovimRegistry = class {
@@ -49370,7 +49384,7 @@ var NeovimClipboard = class {
 };
 
 // ../neovim-common/src/ide/neovim/NeovimConfiguration.ts
-var import_lodash57 = __toESM(require_lodash());
+var import_lodash58 = __toESM(require_lodash());
 var NeovimConfiguration = class {
   constructor() {
     this.notifier = new Notifier();
@@ -49385,11 +49399,11 @@ var NeovimConfiguration = class {
     if (scope != null) {
       for (const { scope: candidateScope, values: values2 } of this.scopes) {
         if (scopeMatches2(candidateScope, scope)) {
-          return (0, import_lodash57.get)(values2, path9) ?? (0, import_lodash57.get)(this.mocks, path9);
+          return (0, import_lodash58.get)(values2, path9) ?? (0, import_lodash58.get)(this.mocks, path9);
         }
       }
     }
-    return (0, import_lodash57.get)(this.mocks, path9);
+    return (0, import_lodash58.get)(this.mocks, path9);
   }
   mockConfiguration(key, value) {
     this.mocks[key] = value;
@@ -49633,7 +49647,7 @@ var NeovimGlobalState = class {
 };
 
 // ../neovim-common/src/ide/neovim/NeovimIDE.ts
-var import_lodash58 = __toESM(require_lodash());
+var import_lodash59 = __toESM(require_lodash());
 
 // ../neovim-common/src/ide/neovim/NeovimMessages.ts
 var NeovimMessages = class {
@@ -50604,7 +50618,7 @@ var NeovimIDE = class {
   }
   disposeOnExit(...disposables) {
     this.disposables.push(...disposables);
-    return () => (0, import_lodash58.pull)(this.disposables, ...disposables);
+    return () => (0, import_lodash59.pull)(this.disposables, ...disposables);
   }
 };
 function dummyEvent4() {
@@ -57134,7 +57148,7 @@ var safeLoadAll2 = renamed2("safeLoadAll", "loadAll");
 var safeDump2 = renamed2("safeDump", "dump");
 
 // src/suite/recorded_neovim_test.ts
-var import_lodash59 = __toESM(require_lodash());
+var import_lodash60 = __toESM(require_lodash());
 var import_node_fs = require("node:fs");
 
 // src/endToEndTestSetupOld.ts
@@ -57351,7 +57365,7 @@ async function runTest(name, file, spyIde, neovimIDE, client) {
       "Unexpected fallback value"
     );
     assert2.deepStrictEqual(
-      omitByDeep(actualSpyIdeValues, import_lodash59.isUndefined),
+      omitByDeep(actualSpyIdeValues, import_lodash60.isUndefined),
       fixture.ide,
       "Unexpected ide captured values"
     );
