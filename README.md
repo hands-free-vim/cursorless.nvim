@@ -26,17 +26,16 @@ Neovim plugin to support Cursorless
 - node: https://nodejs.org/en
 - npm (generally part of node installation)
 - neovim node package: https://github.com/neovim/node-client (globally installed with `npm`)
+- command-server: https://github.com/hands-free-vim/command-server.nvim (see installation instructions below)
 - (Optional) talon.nvim: https://github.com/hands-free-vim/talon.nvim
 
 ## Installation
-
-NOTE: Atm you need to use the `beta` branch of this repository.
 
 Ideally, you want to use a neovim plugin manager like [lazy.nvim](https://github.com/folke/lazy.nvim).
 
 ### Lazy installation
 
-After the typical [lazy setup](https://github.com/folke/lazy.nvim?tab=readme-ov-file#-installation), you'll have to add the `talon.nvim` plugin to your `init.lua`. We also recommend the following other plugins for the best experience.
+After the typical [lazy setup](https://github.com/folke/lazy.nvim?tab=readme-ov-file#-installation), you'll have to add the `command-server.nvim` and `cursorless.nvim` plugins to your `init.lua`. We also recommend the following other plugins for the best experience.
 
 ```lua
 require('lazy').setup({
@@ -44,9 +43,11 @@ require('lazy').setup({
   'tpope/vim-fugitive',
 
   -- Optional: talon.nvim for best experience with neovim-talon
-  { 'hands-free-vim/talon.nvim', branch = "beta" },
+  'hands-free-vim/talon.nvim'
 
-  { 'hands-free-vim/cursorless.nvim', branch = "beta" },
+  -- command-server is required by cursorless
+  'hands-free-vim/command-server.nvim'
+  'hands-free-vim/cursorless.nvim'
 
   -- dependencies useful for neovim-talon
   'dhruvasagar/vim-zoom',
@@ -57,12 +58,18 @@ require('lazy').setup({
 
 ### Manual installation
 
-This method is not recommended but you can try directly cloning the plugin into your nvim data folder:
+This method is not recommended but you can try directly cloning the plugins into your nvim data folder:
 
 ```
-git clone  https://github.com/hands-free-vim/cursorless.nvim
+git clone https://github.com/hands-free-vim/command-server.nvim
+cd command-server.nvim
+cd ..
+```
+
+```
+git clone https://github.com/hands-free-vim/cursorless.nvim
 cd cursorless.nvim
-git checkout beta
+cd ..
 ```
 
 ## Configuration
@@ -72,8 +79,10 @@ git checkout beta
 If you aren't using a plugin manager that automatically calls setup for you (e.g. it is needed for lazy), you will need this somewhere in your neovim config, e.g. in [init.lua](https://neovim.io/doc/user/lua-guide.html#lua-guide-config):
 
 ```lua
-  -- Optional: if you are also using talon.nvim
+-- Optional: if you are also using talon.nvim
 require("talon").setup()
+-- command-server is required by cursorless
+require("command-server").setup()
 -- The actual Cursorless initialization
 require("cursorless").setup()
 ```
