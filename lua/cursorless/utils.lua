@@ -54,4 +54,11 @@ function M.mode_switch_t()
   vim.api.nvim_feedkeys('i', 'n', true)
 end
 
+-- paste what is in the clipboard
+-- https://www.baeldung.com/linux/vim-paste-text
+-- e.g. run in command mode :imap <c-b> <Cmd>lua require('cursorless.utils').paste()<Cr>
+function M.paste()
+  vim.cmd([[normal! "+p]])
+end
+
 return M
