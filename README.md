@@ -42,9 +42,9 @@ require('lazy').setup({
   'tpope/vim-fugitive',
 
   -- Optional: talon.nvim for best experience with neovim-talon
-  'hands-free-vim/talon.nvim'
+  'hands-free-vim/talon.nvim',
 
-  'hands-free-vim/cursorless.nvim'
+  'hands-free-vim/cursorless.nvim',
 
   -- dependencies useful for neovim-talon
   'dhruvasagar/vim-zoom',
