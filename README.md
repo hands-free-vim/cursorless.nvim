@@ -30,8 +30,6 @@ Neovim plugin to support Cursorless
 
 ## Installation
 
-NOTE: Atm you need to use the `beta` branch of this repository.
-
 Ideally, you want to use a neovim plugin manager like [lazy.nvim](https://github.com/folke/lazy.nvim).
 
 ### Lazy installation
@@ -44,9 +42,9 @@ require('lazy').setup({
   'tpope/vim-fugitive',
 
   -- Optional: talon.nvim for best experience with neovim-talon
-  { 'hands-free-vim/talon.nvim', branch = "beta" },
+  'hands-free-vim/talon.nvim'
 
-  { 'hands-free-vim/cursorless.nvim', branch = "beta" },
+  'hands-free-vim/cursorless.nvim'
 
   -- dependencies useful for neovim-talon
   'dhruvasagar/vim-zoom',
@@ -62,7 +60,6 @@ This method is not recommended but you can try directly cloning the plugin into 
 ```
 git clone  https://github.com/hands-free-vim/cursorless.nvim
 cd cursorless.nvim
-git checkout beta
 ```
 
 ## Configuration
