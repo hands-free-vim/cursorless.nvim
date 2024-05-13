@@ -21605,7 +21605,6 @@ function isEmptyIterable(iterable) {
 var FakeCommandServerApi = class {
   constructor() {
     this.signals = { prePhrase: { getVersion: async () => null } };
-    this.focusedElementType = "textEditor";
   }
   async getFocusedElementType() {
     return this.focusedElementType;
@@ -21673,14 +21672,17 @@ var { supported: supported4 } = ScopeSupportFacetLevel;
 // ../common/src/scopeSupportFacets/python.ts
 var { supported: supported5, supportedLegacy, notApplicable: notApplicable4 } = ScopeSupportFacetLevel;
 
+// ../common/src/scopeSupportFacets/csharp.ts
+var { supported: supported6, unsupported, notApplicable: notApplicable5 } = ScopeSupportFacetLevel;
+
 // ../common/src/scopeSupportFacets/lua.ts
-var { supported: supported6, notApplicable: notApplicable5 } = ScopeSupportFacetLevel;
+var { supported: supported7, notApplicable: notApplicable6 } = ScopeSupportFacetLevel;
 
 // ../common/src/scopeSupportFacets/talon.ts
-var { supported: supported7 } = ScopeSupportFacetLevel;
+var { supported: supported8 } = ScopeSupportFacetLevel;
 
 // ../common/src/scopeSupportFacets/typescript.ts
-var { supported: supported8 } = ScopeSupportFacetLevel;
+var { supported: supported9 } = ScopeSupportFacetLevel;
 
 // ../common/src/StoredTargetKey.ts
 var storedTargetKeys = [
@@ -32300,9 +32302,6 @@ var LanguageDefinitions = class {
       editors.forEach(({ document }) => this.loadLanguage(document.languageId));
     });
     this.queryDir = ide().runMode === "development" ? (0, import_path3.join)(getCursorlessRepoRoot(), "queries") : "queries";
-    ide().visibleTextEditors.forEach(
-      ({ document }) => this.loadLanguage(document.languageId)
-    );
     if (ide().runMode === "development") {
       this.disposables.push(
         fileSystem.watchDir(this.queryDir, () => {
@@ -32310,6 +32309,17 @@ var LanguageDefinitions = class {
         })
       );
     }
+  }
+  async init() {
+    await this.loadAllLanguages();
+  }
+  async loadAllLanguages() {
+    const languageIds = ide().visibleTextEditors.map(
+      ({ document }) => document.languageId
+    );
+    await Promise.all(
+      languageIds.map((languageId) => this.loadLanguage(languageId))
+    );
   }
   async loadLanguage(languageId) {
     if (this.languageDefinitions.has(languageId)) {
@@ -33943,7 +33953,6 @@ var getMapMatchers = {
 };
 var nodeMatchers3 = {
   ...getMapMatchers,
-  ifStatement: "if_statement",
   class: "class_declaration",
   className: "class_declaration[name]",
   condition: cascadingMatcher(
@@ -40353,7 +40362,8 @@ var Actions = class {
 
 // ../cursorless-engine/src/core/getCommandFallback.ts
 async function getCommandFallback(commandServerApi, runAction, command) {
-  if (commandServerApi == null || await commandServerApi.getFocusedElementType() === "textEditor") {
+  const focusedElementType = await commandServerApi?.getFocusedElementType();
+  if (focusedElementType == null || focusedElementType === "textEditor") {
     return null;
   }
   const action = command.action;
@@ -42679,7 +42689,7 @@ var ScopeSupportWatcher = class {
 };
 
 // ../cursorless-engine/src/cursorlessEngine.ts
-function createCursorlessEngine(treeSitter, ide2, hats, commandServerApi, fileSystem) {
+async function createCursorlessEngine(treeSitter, ide2, hats, commandServerApi, fileSystem) {
   injectIde(ide2);
   const debug = new Debug(treeSitter);
   const rangeUpdater = new RangeUpdater();
@@ -42694,6 +42704,7 @@ function createCursorlessEngine(treeSitter, ide2, hats, commandServerApi, fileSy
   hatTokenMap.allocateHats();
   const storedTargets = new StoredTargetMap();
   const languageDefinitions = new LanguageDefinitions(fileSystem, treeSitter);
+  await languageDefinitions.init();
   const talonSpokenForms = new TalonSpokenFormsJsonReader(fileSystem);
   const customSpokenFormGenerator = new CustomSpokenFormGeneratorImpl(
     talonSpokenForms
@@ -49141,25 +49152,26 @@ async function showErrorMessage(client, message) {
 }
 
 // ../neovim-common/src/ide/neovim/NeovimCapabilities.ts
+var COMMAND_CAPABILITIES = {
+  clipboardCopy: { acceptsLocation: false },
+  toggleLineComment: void 0,
+  indentLine: void 0,
+  outdentLine: void 0,
+  rename: void 0,
+  quickFix: void 0,
+  revealDefinition: void 0,
+  revealTypeDefinition: void 0,
+  showHover: void 0,
+  showDebugHover: void 0,
+  extractVariable: void 0,
+  fold: void 0,
+  highlight: { acceptsLocation: true },
+  unfold: void 0,
+  showReferences: void 0
+};
 var NeovimCapabilities = class {
   constructor() {
-    this.commands = {
-      clipboardCopy: { acceptsLocation: false },
-      toggleLineComment: void 0,
-      indentLine: void 0,
-      outdentLine: void 0,
-      rename: void 0,
-      quickFix: void 0,
-      revealDefinition: void 0,
-      revealTypeDefinition: void 0,
-      showHover: void 0,
-      showDebugHover: void 0,
-      extractVariable: void 0,
-      fold: void 0,
-      highlight: { acceptsLocation: true },
-      unfold: void 0,
-      showReferences: void 0
-    };
+    this.commands = COMMAND_CAPABILITIES;
   }
 };
 
@@ -49172,12 +49184,12 @@ var NeovimClipboard = class {
     return await getFromClipboard(this.client);
   }
   async writeText(value) {
-    await putToClipboard(value, this.client);
+    return await putToClipboard(value, this.client);
   }
 };
 
 // ../neovim-common/src/ide/neovim/NeovimConfiguration.ts
-var import_lodash58 = __toESM(require_lodash());
+var import_lodash58 = __toESM(require_lodash(), 1);
 var NeovimConfiguration = class {
   constructor() {
     this.notifier = new Notifier();
@@ -49376,7 +49388,7 @@ function dummyEvent2() {
 
 // ../neovim-common/src/ide/neovim/NeovimFileSystem.ts
 var import_path6 = require("path");
-var fs = __toESM(require("fs"));
+var fs = __toESM(require("fs"), 1);
 var NeovimFileSystem = class {
   constructor(runMode, cursorlessDir) {
     this.runMode = runMode;
@@ -49440,7 +49452,7 @@ var NeovimGlobalState = class {
 };
 
 // ../neovim-common/src/ide/neovim/NeovimIDE.ts
-var import_lodash59 = __toESM(require_lodash());
+var import_lodash59 = __toESM(require_lodash(), 1);
 
 // ../neovim-common/src/ide/neovim/NeovimMessages.ts
 var NeovimMessages = class {
@@ -49475,9 +49487,6 @@ var NeovimTextEditorImpl = class {
   get document() {
     return this._document;
   }
-  get visibleRanges() {
-    return this._visibleRanges;
-  }
   updateDocument(visibleRanges, selections, doc, lines) {
     if (doc) {
       this._document = doc;
@@ -49496,6 +49505,9 @@ var NeovimTextEditorImpl = class {
   async setSelections(selections) {
     this._selections = selections;
     await bufferSetSelections(this.client, selections);
+  }
+  get visibleRanges() {
+    return this._visibleRanges;
   }
   get options() {
     throw Error("get options Not implemented");
@@ -49586,7 +49598,7 @@ var NeovimTextEditorImpl = class {
 };
 
 // ../neovim-common/src/ide/neovim/NeovimIDE.ts
-var import_path7 = __toESM(require("path"));
+var import_path7 = __toESM(require("path"), 1);
 
 // ../../node_modules/.pnpm/vscode-uri@3.0.8/node_modules/vscode-uri/lib/esm/index.mjs
 var LIB;
@@ -50274,15 +50286,6 @@ var NeovimIDE = class {
       "cursorless-neovim"
     );
   }
-  // See https://code.visualstudio.com/api/references/vscode-api#ExtensionMode
-  get runMode() {
-    const runMode = process.env.CURSORLESS_MODE;
-    const ret = runMode == null ? "production" : runMode === "test" ? "test" : runMode == "development" ? "development" : "unknown";
-    if (ret === "unknown") {
-      throw Error("Invalid runMode");
-    }
-    return ret;
-  }
   async showQuickPick(_items, _options) {
     throw Error("showQuickPick Not implemented");
   }
@@ -50297,6 +50300,15 @@ var NeovimIDE = class {
       throw Error("Field `assetsRoot` has not yet been mocked");
     }
     return this.assetsRoot_;
+  }
+  // See https://code.visualstudio.com/api/references/vscode-api#ExtensionMode
+  get runMode() {
+    const runMode = process.env.CURSORLESS_MODE;
+    const ret = runMode == null ? "production" : runMode === "test" ? "test" : runMode == "development" ? "development" : "unknown";
+    if (ret === "unknown") {
+      throw Error("Invalid runMode");
+    }
+    return ret;
   }
   get activeTextEditor() {
     return this.getActiveTextEditor();
@@ -50333,29 +50345,27 @@ var NeovimIDE = class {
   getEditableTextEditor(editor) {
     return editor;
   }
-  findInDocument(_query, _editor) {
+  async findInDocument(_query, _editor) {
     throw Error("findInDocument Not implemented");
   }
-  findInWorkspace(_query) {
+  async findInWorkspace(_query) {
     throw Error("findInWorkspace Not implemented");
   }
-  openTextDocument(_path) {
+  async openTextDocument(_path) {
     throw Error("openTextDocument Not implemented");
   }
-  openUntitledTextDocument(_options) {
+  async openUntitledTextDocument(_options) {
     throw Error("openUntitledTextDocument Not implemented");
   }
-  showInputBox(_options) {
+  async showInputBox(_options) {
     throw Error("TextDocumentChangeEvent Not implemented");
   }
-  executeCommand(_command, ..._args) {
+  async executeCommand(_command, ..._args) {
     throw new Error("executeCommand Method not implemented.");
   }
-  // onDidChangeTextDocument: Event<TextDocumentChangeEvent> = dummyEvent;
   onDidChangeTextDocument(listener) {
     return neovimOnDidChangeTextDocument(listener);
   }
-  // onDidOpenTextDocument: Event<TextDocument> = dummyEvent;
   onDidOpenTextDocument(listener, thisArgs, disposables) {
     return neovimOnDidOpenTextDocument(listener, thisArgs, disposables);
   }
@@ -50489,8 +50499,8 @@ var NeovimCommandServerApi = class {
     this.signals = { prePhrase: { getVersion: async () => null } };
   }
   // for vscode, it is actually stored into the command-server
+  // but for neovim, it is stored in cursorless
   // https://github.com/pokey/command-server/blob/main/src/extension.ts#L32
-  // I am not sure why it is stored into the command-server and not in the Cursorless extension
   async getFocusedElementType() {
     const currentMode = await this.client.mode;
     if (currentMode.mode === "t" || currentMode.mode === "nt") {
@@ -50632,7 +50642,7 @@ async function activate(plugin) {
     runIntegrationTests: runIntegrationTests2,
     addCommandRunnerDecorator,
     customSpokenFormGenerator
-  } = createCursorlessEngine(
+  } = await createCursorlessEngine(
     treeSitter,
     normalizedIde,
     hats,
