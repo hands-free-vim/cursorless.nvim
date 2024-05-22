@@ -21657,32 +21657,189 @@ var ScopeSupportFacetLevel = /* @__PURE__ */ ((ScopeSupportFacetLevel2) => {
   return ScopeSupportFacetLevel2;
 })(ScopeSupportFacetLevel || {});
 
-// ../common/src/scopeSupportFacets/html.ts
-var { supported, notApplicable } = ScopeSupportFacetLevel;
+// ../common/src/scopeSupportFacets/c.ts
+var { supported, unsupported, notApplicable } = ScopeSupportFacetLevel;
+var cScopeSupport = {
+  ifStatement: supported,
+  "comment.line": supported,
+  "string.singleLine": supported
+};
 
-// ../common/src/scopeSupportFacets/java.ts
-var { supported: supported2, notApplicable: notApplicable2 } = ScopeSupportFacetLevel;
+// ../common/src/scopeSupportFacets/clojure.ts
+var { supported: supported2, unsupported: unsupported2, notApplicable: notApplicable2 } = ScopeSupportFacetLevel;
 
-// ../common/src/scopeSupportFacets/javascript.ts
-var { supported: supported3, notApplicable: notApplicable3 } = ScopeSupportFacetLevel;
-
-// ../common/src/scopeSupportFacets/json.ts
-var { supported: supported4 } = ScopeSupportFacetLevel;
-
-// ../common/src/scopeSupportFacets/python.ts
-var { supported: supported5, supportedLegacy, notApplicable: notApplicable4 } = ScopeSupportFacetLevel;
+// ../common/src/scopeSupportFacets/cpp.ts
+var { supported: supported3, unsupported: unsupported3, notApplicable: notApplicable3 } = ScopeSupportFacetLevel;
+var cppScopeSupport = {
+  ...cScopeSupport
+};
 
 // ../common/src/scopeSupportFacets/csharp.ts
-var { supported: supported6, unsupported, notApplicable: notApplicable5 } = ScopeSupportFacetLevel;
+var { supported: supported4, unsupported: unsupported4, notApplicable: notApplicable4 } = ScopeSupportFacetLevel;
+
+// ../common/src/scopeSupportFacets/css.ts
+var { supported: supported5, unsupported: unsupported5, notApplicable: notApplicable5 } = ScopeSupportFacetLevel;
+var cssScopeSupport = {
+  "comment.line": supported5,
+  "comment.block": supported5,
+  "string.singleLine": supported5
+};
+
+// ../common/src/scopeSupportFacets/go.ts
+var { supported: supported6, unsupported: unsupported6, notApplicable: notApplicable6 } = ScopeSupportFacetLevel;
+
+// ../common/src/scopeSupportFacets/html.ts
+var { supported: supported7, notApplicable: notApplicable7 } = ScopeSupportFacetLevel;
+
+// ../common/src/scopeSupportFacets/java.ts
+var { supported: supported8, notApplicable: notApplicable8 } = ScopeSupportFacetLevel;
+
+// ../common/src/scopeSupportFacets/javascript.ts
+var { supported: supported9, unsupported: unsupported7, notApplicable: notApplicable9 } = ScopeSupportFacetLevel;
+var javascriptCoreScopeSupport = {
+  list: supported9,
+  map: supported9,
+  ifStatement: supported9,
+  regularExpression: supported9,
+  switchStatementSubject: supported9,
+  fieldAccess: supported9,
+  statement: supported9,
+  "statement.iteration.document": supported9,
+  "statement.iteration.block": supported9,
+  class: supported9,
+  className: supported9,
+  namedFunction: supported9,
+  "namedFunction.method": supported9,
+  anonymousFunction: supported9,
+  functionName: supported9,
+  functionCall: supported9,
+  "functionCall.constructor": supported9,
+  functionCallee: supported9,
+  "functionCallee.constructor": supported9,
+  "argument.actual": supported9,
+  "argument.actual.iteration": supported9,
+  "argument.formal": supported9,
+  "argument.formal.iteration": supported9,
+  "comment.line": supported9,
+  "comment.block": supported9,
+  "string.singleLine": supported9,
+  "string.multiLine": supported9,
+  "branch.if": supported9,
+  "branch.if.iteration": supported9,
+  "branch.try": supported9,
+  "branch.switchCase": supported9,
+  "branch.switchCase.iteration": supported9,
+  "branch.ternary": supported9,
+  "condition.if": supported9,
+  "condition.while": supported9,
+  "condition.doWhile": supported9,
+  "condition.for": supported9,
+  "condition.ternary": supported9,
+  "condition.switchCase": supported9,
+  "name.foreach": supported9,
+  "name.assignment": supported9,
+  "name.assignment.pattern": supported9,
+  "name.variable": supported9,
+  "name.variable.pattern": supported9,
+  "name.function": supported9,
+  "name.class": supported9,
+  "name.field": supported9,
+  "key.mapPair": supported9,
+  "key.mapPair.iteration": supported9,
+  "value.mapPair": supported9,
+  "value.mapPair.iteration": supported9,
+  "value.assignment": supported9,
+  "value.variable": supported9,
+  "value.foreach": supported9,
+  "value.return": supported9,
+  "value.return.lambda": supported9,
+  "value.field": supported9
+};
+var javascriptJsxScopeSupport = {
+  element: supported9,
+  tags: supported9,
+  startTag: supported9,
+  endTag: supported9,
+  attribute: supported9,
+  "key.attribute": supported9,
+  "value.attribute": supported9
+};
+var javascriptScopeSupport = {
+  ...javascriptCoreScopeSupport,
+  ...javascriptJsxScopeSupport,
+  "type.variable": notApplicable9,
+  "type.formalParameter": notApplicable9,
+  "type.return": notApplicable9,
+  "type.field": notApplicable9,
+  "type.foreach": notApplicable9,
+  "type.interface": notApplicable9,
+  command: notApplicable9
+};
+
+// ../common/src/scopeSupportFacets/json.ts
+var { supported: supported10 } = ScopeSupportFacetLevel;
+var jsonScopeSupport = {
+  "comment.line": supported10,
+  "comment.block": supported10
+};
+
+// ../common/src/scopeSupportFacets/jsonc.ts
+var { supported: supported11, unsupported: unsupported8, notApplicable: notApplicable10 } = ScopeSupportFacetLevel;
+var jsoncScopeSupport = {
+  ...jsonScopeSupport
+};
+
+// ../common/src/scopeSupportFacets/latex.ts
+var { supported: supported12, unsupported: unsupported9, notApplicable: notApplicable11 } = ScopeSupportFacetLevel;
 
 // ../common/src/scopeSupportFacets/lua.ts
-var { supported: supported7, notApplicable: notApplicable6 } = ScopeSupportFacetLevel;
+var { supported: supported13, notApplicable: notApplicable12 } = ScopeSupportFacetLevel;
+
+// ../common/src/scopeSupportFacets/markdown.ts
+var { supported: supported14, unsupported: unsupported10, notApplicable: notApplicable13 } = ScopeSupportFacetLevel;
+
+// ../common/src/scopeSupportFacets/python.ts
+var { supported: supported15, supportedLegacy, notApplicable: notApplicable14 } = ScopeSupportFacetLevel;
+
+// ../common/src/scopeSupportFacets/ruby.ts
+var { supported: supported16, unsupported: unsupported11, notApplicable: notApplicable15 } = ScopeSupportFacetLevel;
+
+// ../common/src/scopeSupportFacets/rust.ts
+var { supported: supported17, unsupported: unsupported12, notApplicable: notApplicable16 } = ScopeSupportFacetLevel;
+
+// ../common/src/scopeSupportFacets/scala.ts
+var { supported: supported18, unsupported: unsupported13, notApplicable: notApplicable17 } = ScopeSupportFacetLevel;
+
+// ../common/src/scopeSupportFacets/scss.ts
+var { supported: supported19, unsupported: unsupported14, notApplicable: notApplicable18 } = ScopeSupportFacetLevel;
+var scssScopeSupport = {
+  ...cssScopeSupport
+};
 
 // ../common/src/scopeSupportFacets/talon.ts
-var { supported: supported8 } = ScopeSupportFacetLevel;
+var { supported: supported20 } = ScopeSupportFacetLevel;
 
 // ../common/src/scopeSupportFacets/typescript.ts
-var { supported: supported9 } = ScopeSupportFacetLevel;
+var { supported: supported21 } = ScopeSupportFacetLevel;
+var typescriptScopeSupport = {
+  ...javascriptCoreScopeSupport,
+  "type.variable": supported21,
+  "type.formalParameter": supported21,
+  "type.return": supported21,
+  "type.field": supported21,
+  "type.interface": supported21,
+  "type.alias": supported21,
+  "name.field": supported21,
+  "value.field": supported21,
+  "type.cast": supported21
+};
+
+// ../common/src/scopeSupportFacets/typescriptreact.ts
+var { supported: supported22, unsupported: unsupported15, notApplicable: notApplicable19 } = ScopeSupportFacetLevel;
+var typescriptreactScopeSupport = {
+  ...typescriptScopeSupport,
+  ...javascriptJsxScopeSupport
+};
 
 // ../common/src/StoredTargetKey.ts
 var storedTargetKeys = [
@@ -27619,13 +27776,6 @@ function makeNodePairSelection(anchor, active) {
     active.endPosition.column
   );
 }
-function getNodeInternalRange(node) {
-  const children = node.children;
-  return makeRangeFromPositions(
-    children[0].endPosition,
-    children[children.length - 1].startPosition
-  );
-}
 function simpleSelectionExtractor(editor, node) {
   return {
     selection: new Selection(
@@ -32353,7 +32503,7 @@ var LanguageDefinitions = class {
     const definition = this.languageDefinitions.get(languageId);
     if (definition == null) {
       throw new Error(
-        "Expected language definition entry missing for languageId " + languageId
+        "Expected language definition entry is missing for languageId " + languageId
       );
     }
     return definition === LANGUAGE_UNDEFINED ? void 0 : definition;
@@ -33544,9 +33694,6 @@ function ancestorChainNodeMatcher(nodeFinders, nodeToReturn = 0, selector = simp
     selector
   );
 }
-function typeMatcher(...typeNames) {
-  return matcher(typedNodeFinder(...typeNames));
-}
 function patternMatcher(...patterns) {
   return matcher(patternFinder(...patterns));
 }
@@ -33582,9 +33729,11 @@ function cascadingMatcher(...matchers2) {
     return null;
   };
 }
-var notSupported = (_selection, _node) => {
-  throw new Error("Node type not supported");
-};
+function notSupported(scopeTypeType) {
+  return (_selection, _node) => {
+    throw new Error(`Node type '${scopeTypeType}' not supported`);
+  };
+}
 function createPatternMatchers(nodeMatchers14) {
   return Object.freeze(
     Object.fromEntries(
@@ -33693,7 +33842,6 @@ var ifStatementFinder = functionNameBasedFinder(
 );
 var ifStatementMatcher = matcher(ifStatementFinder);
 var nodeMatchers = {
-  comment: "comment",
   map: "map_lit",
   collectionKey: matcher(mapParityNodeFinder(0)),
   collectionItem: cascadingMatcher(
@@ -33720,7 +33868,6 @@ var nodeMatchers = {
   ),
   // A list is either a vector literal or a quoted list literal
   list: ["vec_lit", "quoting_lit.list_lit"],
-  string: "str_lit",
   functionCall: functionCallPattern,
   functionCallee: chainedMatcher([
     functionCallFinder,
@@ -33809,10 +33956,7 @@ var nodeMatchers2 = {
     "function_definition[declarator][declarator][namespace]"
     // void ClassName::method() {}
   ],
-  ifStatement: "if_statement",
   ["private.switchStatementSubject"]: "switch_statement[condition][value]",
-  string: "string_literal",
-  comment: "comment",
   anonymousFunction: "lambda_expression",
   list: "initializer_list",
   functionCall: ["call_expression", "declaration.init_declarator!"],
@@ -33948,12 +34092,10 @@ var getMapMatchers = {
       typedNodeFinder("object_creation_expression"),
       (node) => node.childForFieldName("initializer")
     ])
-  ),
-  string: typeMatcher("string_literal")
+  )
 };
 var nodeMatchers3 = {
   ...getMapMatchers,
-  class: "class_declaration",
   className: "class_declaration[name]",
   condition: cascadingMatcher(
     conditionMatcher("*[condition]"),
@@ -33981,7 +34123,6 @@ var nodeMatchers3 = {
   ),
   namedFunction: NAMED_FUNCTION_TYPES,
   functionName: NAMED_FUNCTION_TYPES.map((t) => t + "[name]"),
-  comment: "comment",
   regularExpression: "regex",
   type: trailingMatcher(["*[type]"]),
   name: [
@@ -34178,7 +34319,6 @@ var nodeMatchers6 = {
   ),
   functionCallee: "command_name",
   collectionItem: matcher(patternFinder("enum_item"), extractItemContent),
-  comment: ["block_comment", "line_comment"],
   part: "part",
   chapter: "chapter",
   section: "section",
@@ -34461,7 +34601,6 @@ var nodeMatchers10 = {
       1
     )
   ),
-  string: "string",
   functionName: ["method[name]", "singleton_method[name]"],
   anonymousFunction: cascadingMatcher(
     patternMatcher("lambda", "do_block"),
@@ -34494,12 +34633,6 @@ var nodeMatchers10 = {
   collectionItem: argumentMatcher(...mapTypes, ...listTypes)
 };
 var patternMatchers = createPatternMatchers(nodeMatchers10);
-function stringTextFragmentExtractor(node, _selection) {
-  if (node.type === "string_content" || node.type === "heredoc_content") {
-    return getNodeRange(node);
-  }
-  return null;
-}
 
 // ../cursorless-engine/src/languages/elseIfExtractor.ts
 function elseIfExtractor() {
@@ -34616,8 +34749,6 @@ var nodeMatchers11 = {
     ],
     1
   ),
-  string: ["raw_string_literal", "string_literal"],
-  ifStatement: ["if_expression", "if_let_expression"],
   condition: cascadingMatcher(
     patternMatcher("while_expression[condition]", "if_expression[condition]"),
     matcher(
@@ -34630,7 +34761,6 @@ var nodeMatchers11 = {
   ),
   functionCall: ["call_expression", "macro_invocation", "struct_expression"],
   functionCallee: "call_expression[function]",
-  comment: ["line_comment", "block_comment"],
   list: ["array_expression", "tuple_expression"],
   collectionItem: argumentMatcher(
     "array_expression",
@@ -34724,9 +34854,6 @@ var nodeMatchers12 = {
     "object_definition[name]",
     "trait_definition[name]"
   ],
-  ifStatement: "if_expression",
-  string: ["interpolated_string_expression", "string"],
-  comment: "comment",
   // list.size(), does not count foo.size (field_expression), or foo size (postfix_expression)
   functionCall: "call_expression",
   namedFunction: "function_definition",
@@ -34866,12 +34993,10 @@ var nodeMatchers13 = {
       childRangeSelector([], ["attribute_name", "string_value"])
     )
   ),
-  string: "string_value",
   functionCall: "call_expression",
   functionCallee: "call_expression.function_name!",
   namedFunction: ["mixin_statement", "function_statement"],
   functionName: ["mixin_statement.name!", "function_statement.name!"],
-  comment: ["comment", "single_line_comment"],
   argumentOrParameter: cascadingMatcher(
     matcher(
       patternFinder("arguments.*!", "parameters.*!"),
@@ -34914,12 +35039,6 @@ var nodeMatchers13 = {
   collectionItem: "declaration"
 };
 var patternMatchers2 = createPatternMatchers(nodeMatchers13);
-function stringTextFragmentExtractor2(node, _selection) {
-  if (node.type === "string_value") {
-    return getNodeRange(node);
-  }
-  return null;
-}
 
 // ../cursorless-engine/src/languages/getNodeMatcher.ts
 function getNodeMatcher(languageId, scopeTypeType, includeSiblings) {
@@ -34929,7 +35048,7 @@ function getNodeMatcher(languageId, scopeTypeType, includeSiblings) {
   }
   const matcher2 = matchers2[scopeTypeType];
   if (matcher2 == null) {
-    return notSupported;
+    return notSupported(scopeTypeType);
   }
   if (includeSiblings) {
     return matcherIncludeSiblings(matcher2);
@@ -34938,10 +35057,10 @@ function getNodeMatcher(languageId, scopeTypeType, includeSiblings) {
 }
 var languageMatchers = {
   c: cpp_default,
-  cpp: cpp_default,
-  css: patternMatchers2,
-  csharp: csharp_default,
   clojure: clojure_default,
+  cpp: cpp_default,
+  csharp: csharp_default,
+  css: patternMatchers2,
   go: go_default,
   java: java_default,
   latex: latex_default,
@@ -34949,9 +35068,9 @@ var languageMatchers = {
   php: php_default,
   python: python_default,
   ruby: patternMatchers,
+  rust: rust_default,
   scala: scala_default,
-  scss: patternMatchers2,
-  rust: rust_default
+  scss: patternMatchers2
 };
 function matcherIncludeSiblings(matcher2) {
   return (selection, node) => {
@@ -35055,74 +35174,6 @@ function findNearestContainingAncestorNode(startNode, nodeMatcher, selection) {
   }
   return null;
 }
-
-// ../cursorless-engine/src/languages/getTextFragmentExtractor.ts
-function constructDefaultTextFragmentExtractor(languageId, stringTextFragmentExtractor3) {
-  const commentNodeMatcher = getNodeMatcher(languageId, "comment", false);
-  stringTextFragmentExtractor3 = stringTextFragmentExtractor3 ?? constructDefaultStringTextFragmentExtractor(languageId);
-  return (node, selection) => {
-    const stringTextFragment = stringTextFragmentExtractor3(node, selection);
-    if (stringTextFragment != null) {
-      return stringTextFragment;
-    }
-    if (commentNodeMatcher !== notSupported && commentNodeMatcher(selection, node) != null) {
-      return getNodeRange(node);
-    }
-    if (node.type === "ERROR") {
-      return getNodeRange(node);
-    }
-    return null;
-  };
-}
-function constructDefaultStringTextFragmentExtractor(languageId) {
-  const stringNodeMatcher = getNodeMatcher(languageId, "string", false);
-  return (node, selection) => {
-    if (stringNodeMatcher(selection, node) != null) {
-      return getNodeInternalRange(node);
-    }
-    return null;
-  };
-}
-function constructHackedStringTextFragmentExtractor(languageId) {
-  const stringNodeMatcher = getNodeMatcher(languageId, "string", false);
-  return (node, selection) => {
-    if (stringNodeMatcher(selection, node) != null) {
-      return getNodeRange(node);
-    }
-    return null;
-  };
-}
-function getTextFragmentExtractor(languageId) {
-  return textFragmentExtractors[languageId];
-}
-var fullDocumentTextFragmentExtractor = null;
-var textFragmentExtractors = {
-  c: constructDefaultTextFragmentExtractor("c"),
-  clojure: constructDefaultTextFragmentExtractor(
-    "clojure",
-    constructHackedStringTextFragmentExtractor("clojure")
-  ),
-  cpp: constructDefaultTextFragmentExtractor("cpp"),
-  csharp: constructDefaultTextFragmentExtractor("csharp"),
-  css: constructDefaultTextFragmentExtractor(
-    "css",
-    stringTextFragmentExtractor2
-  ),
-  latex: fullDocumentTextFragmentExtractor,
-  ruby: constructDefaultTextFragmentExtractor(
-    "ruby",
-    stringTextFragmentExtractor
-  ),
-  scala: constructDefaultTextFragmentExtractor(
-    "scala",
-    constructHackedStringTextFragmentExtractor("scala")
-  ),
-  scss: constructDefaultTextFragmentExtractor(
-    "scss",
-    stringTextFragmentExtractor2
-  ),
-  rust: constructDefaultTextFragmentExtractor("rust")
-};
 
 // ../cursorless-engine/src/processTargets/modifiers/surroundingPair/delimiterMaps.ts
 var delimiterToText = Object.freeze({
@@ -35696,15 +35747,7 @@ function processSurroundingPairCore(languageDefinitions, target, scopeType) {
       );
       return containingScope?.[0].contentRange;
     }
-    const textFragmentExtractor = getTextFragmentExtractor(document.languageId);
-    if (textFragmentExtractor == null) {
-      return document.range;
-    }
-    const selectionWithEditor = {
-      editor,
-      selection: new Selection(range4.start, range4.end)
-    };
-    return textFragmentExtractor(node, selectionWithEditor);
+    return document.range;
   })();
   if (textFragmentRange != null) {
     const surroundingRange = findSurroundingPairTextBased(
@@ -42069,8 +42112,8 @@ var legacyLanguageIds = [
   "c",
   "clojure",
   "cpp",
-  "css",
   "csharp",
+  "css",
   "go",
   "html",
   "java",
@@ -42083,9 +42126,9 @@ var legacyLanguageIds = [
   "php",
   "python",
   "ruby",
+  "rust",
   "scala",
   "scss",
-  "rust",
   "typescript",
   "typescriptreact",
   "xml"
