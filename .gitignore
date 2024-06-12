@@ -1,5 +1,0 @@
-node_modules/
-.luacheckcache
-package-lock.json
-temp/
-nvim_node.log
